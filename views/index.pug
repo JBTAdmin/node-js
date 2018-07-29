@@ -3,3 +3,28 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+
+  hr
+  h2 Add a book
+  
+  form(method='POST' action='/books/add')
+          div.form-group
+            label(for='title') Title
+            br
+            input.form-control(type='text' id='title' placeholder='title' name='title')
+          br
+          div.form-group
+            label(for='author') Author Name
+            br
+            input.form-control(type='author' id='author' placeholder='author' name='author')
+          br
+          div.form-group
+            label(for='summary') Book Sumary
+            br
+            textarea.formControl(name="summary", cols="30", rows="2")
+          br
+          div.form-group
+            label(for='isbn') ISBN
+            br
+            input.form-control(type='isbn' id='isbn' placeholder='isbn' name='isbn')
+          button.btn.btn-primary(type='submit') Add

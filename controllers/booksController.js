@@ -29,10 +29,10 @@ exports.addBook = (req, res) => {
 		.save()
 		.then(data => {
 			console.log(data);
-			res.send(data);
+			res.send('Success: Data submitted');
 		})
 		.catch(err => {
 			console.log(err);
-			res.status(400).send('unable to save data');
+			res.status(400).send('Error: unable to save data');
 		});
 };
