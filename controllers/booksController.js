@@ -1,5 +1,7 @@
 const Book = require('../models/book.model.js');
 
+const { validationResult } = require('express-validator/check');
+
 exports.booksList = (req, res) => {
 	Book.find()
 		.then(data => {
@@ -24,11 +26,16 @@ exports.getBookById = (req, res) => {
 
 exports.addBook = (req, res) => {
 	let newBook = new Book(req.body);
+	console.log(newBook);
+
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) {
+		return res.status(422).json({ errors: errors.array() });
+	}
 
 	newBook
 		.save()
 		.then(data => {
-			console.log(data);
 			res.send('Success: Data submitted');
 		})
 		.catch(err => {
